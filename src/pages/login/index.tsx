@@ -1,5 +1,5 @@
 import React ,{ useState,useReducer } from 'react';
-import router from 'react-router'
+import router from 'umi/router'
 import { connect } from "dva";
 import styles from './index.less';
 import { Button, Modal } from 'antd-mobile';
@@ -18,13 +18,13 @@ const Login: React.FC<LoginProps> = (props: LoginProps) => {
 
   const login = () => {
     if (!username) {
-      let warning = alert('警告', '请输入用户名', [
+      let warning = alert('提示', '请输入用户名', [
         { text: '知道了', onPress: () => {warning.close()}},
       ]);
       return
     }
     if (!password) {
-      let warning = alert('警告', '请输入密码', [
+      let warning = alert('提示', '请输入密码', [
         { text: '知道了', onPress: () => {warning.close()}},
       ]);
       return
@@ -40,13 +40,11 @@ const Login: React.FC<LoginProps> = (props: LoginProps) => {
         params: params,
         success: () => {
           setLoading(false)
-          router.replace({
-            pathName: '/home'
-          })
+          router.replace('/home')
         },
         fail:(res: any) => {
           setLoading(false)
-          let warning = alert('警告', res.errorDescription, [
+          let warning = alert('提示', res.errorDescription, [
             { text: '重试', onPress: () => {warning.close()}},
           ]);
         }
