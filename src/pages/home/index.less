@@ -11,8 +11,8 @@
     background: #26a2ff;
   }
   .content-midden {
-    top: 300px;
-    width: 690px;
+    top: 250px;
+    width: 100%;
     padding-left: 30px;
     padding-right: 30px;
     position: absolute;
@@ -23,6 +23,7 @@
     background: #fff;
     border-radius: 12px;
     padding-left: 60px;
+    display: flex;
     box-shadow: 0 3px 3px rgba(0,0,0,0.16);
     img {
       width: 100px;
@@ -31,18 +32,23 @@
     }
   }
   .content-item-title {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
     height: 100%;
     margin-left: 60px;
-    vertical-align: middle;
     div:nth-child(1) {
+      width: 100%;
       color: #333333;
       font-size: 30px;
       line-height: 50px;
     }
     div:nth-child(2) {
+      width: 100%;
       color: #888888;
-      font-size: 20px;
+      font-size: 24px;
       line-height: 50px;
     }
   }
