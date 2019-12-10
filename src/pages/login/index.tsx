@@ -8,6 +8,9 @@ const alert = Modal.alert;
 interface LoginProps {
   dispatch: Function
 }
+interface keyValueData {
+  [key: string]: string
+}
 
 const Login: React.FC<LoginProps> = (props: LoginProps) => {
 
@@ -81,6 +84,6 @@ const Login: React.FC<LoginProps> = (props: LoginProps) => {
     </div>
   )
 }
-export default connect(({ loading }) => ({
+export default connect(({ loading }: keyValueData) => ({
   loading
 }))(Login);

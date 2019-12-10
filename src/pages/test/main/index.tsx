@@ -16,11 +16,11 @@ const Main: React.FC = (props) => {
 	return (
 		<div className={styles["main-content"]}>
 			<NavBar
-				mode="light"
+				mode="dark"
 				icon={<Icon type="left" />}
 				onLeftClick={router.goBack}
 				rightContent={[]}
-			>NavBar</NavBar>
+			>测试列表</NavBar>
 			<SearchBar placeholder="请输入测试题目" />
 			<div className={styles["top-content"]}>
 				<span>精选测试</span>

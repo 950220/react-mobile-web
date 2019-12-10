@@ -11,7 +11,7 @@ const Home: React.FC = (props) => {
     let routerPath:IRouterPath = {
       testMain: '/test/main',
       joke: '/joke',
-      userCenter: '/userCenter'
+      userCenter: '/usercenter'
     }
     router.push({
       pathname: routerPath[type]

@@ -1,5 +1,5 @@
 import React from 'react';
-import { staticUrl } from '@/config.js';
+import { staticUrl } from '@/config.ts';
 interface ImageProps {
   src: string;
   className?: string;
