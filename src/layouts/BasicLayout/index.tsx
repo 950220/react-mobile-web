@@ -1,28 +1,50 @@
-import React from 'react';
-import router from 'umi/router';
+import React, { useEffect } from 'react';
+import { connect } from 'dva';
 import styles from './index.less';
-interface IRouterPath {
-  [key:string]: string
+import { Toast } from 'antd-mobile'
+import Redirect from 'umi/redirect';
+
+interface basicProps {
+  userId: string,
+  token: string,
+  dispatch: any,
+  children: any
 }
-const BasicLayout: React.FC = props => {
-  const goToPath = (type: string) => {
-    let routerPath:IRouterPath = {
-      home: '/',
-      game: '/game',
-      video: '/video',
-      tribune: '/tribune',
-      center: '/member/login',
-      contact: '/contact'
+interface keyValueData {
+  [key: string]: any
+}
+const BasicLayout: React.FC<basicProps> = (props: basicProps) => {
+  const { userId, token, dispatch } = props
+  console.log(userId, token)
+  useEffect(() => {
+    if (userId && token) {
+      dispatch({
+        type: 'account/getUserInfoAction',
+        payload: {
+          params: { userId },
+          loginExpired: () => {
+            Toast.info('登录已过期，请重新登录', 1)
+          },
+          fail: () => {
+            Toast.info('获取用户信息失败，请重试', 1)
+          }
+        }
+      })
     }
-    router.push({
-      pathname: routerPath[type]
-    })
-  }
+  }, [])
   return (
+    userId && token ? 
     <div className={styles.normal}>
       {props.children}
     </div>
+    :
+    <Redirect to="/member/login" />
   );
 };
 
-export default BasicLayout;
+export default connect(({ loading, account}: keyValueData) => ({
+  loading,
+  account,
+  userId: account.userId,
+  token: account.token
+}))(BasicLayout);

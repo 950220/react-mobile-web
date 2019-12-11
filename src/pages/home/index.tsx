@@ -22,21 +22,21 @@ const Home: React.FC = (props) => {
       <div className={styles["content-top"]}>欢迎进入</div>
       <div className={styles["content-midden"]}>
         <div className={styles["content-item"]} onClick={() => {goTo('testMain')}}>
-          <img src="../../assets/images/menuIcon4.png" />
+          <img src={require('../../assets/images/menuIcon4.png')} />
           <div className={styles["content-item-title"]}>
             <div>进入测试</div>
             <div>更快更方便，省时省力</div>
           </div>
         </div>
         <div className={styles["content-item"] + " " + styles["mgtp"]} onClick={() => {goTo('joke')}}>
-          <img src="../../assets/images/menuIcon7.png" />
+          <img src={require('../../assets/images/menuIcon7.png')} />
           <div className={styles["content-item-title"]}>
             <div>每日幽默</div>
             <div>更快更方便，省时省力</div>
           </div>
         </div>
         <div className={styles["content-item"] + " " + styles["mgtp"]} onClick={() => {goTo('userCenter')}}>
-          <img src="../../assets/images/menuIcon5.png" />
+          <img src={require('../../assets/images/menuIcon5.png')} />
           <div className={styles["content-item-title"]}>
             <div>个人中心</div>
             <div>更快更方便，省时省力</div>

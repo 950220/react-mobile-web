@@ -1,15 +1,14 @@
 import store from "store";
 import {
-  loginIn
+  loginIn,
+  getUserInfo
 } from '@/services/account'
 
 export default {
   namespace: "account",
   state: { 
     token: store.get('token'),
-    guid: store.get('guid'),
-    expires_in: store.get('expires_in'),
-    refresh_token: store.get('refresh_token'),
+    userId: store.get('userId'),
     userInfo:{
 
     }
@@ -29,9 +28,35 @@ export default {
         fail && fail(res)
       }
     },
+    *loginOutAction({ payload}, { call, put }) {
+      store.set('token', '')
+      store.set('guid', '')
+      yield put({ type: 'setToken', payload: {token: ''}})
+      yield put({ type: 'setUserId', payload: {id: ''}})
+      yield put({ type: 'setUserInfo', payload: {}})
+    },
     *registerAction({ payload }, { call, put }) {
     },
     *getUserInfoAction({ payload }, { call, put }) {
+      const { loginExpired, fail, params } = payload
+      const res = yield call(getUserInfo, params);
+      if (res.resultCode === 200) {
+        yield put({ type: 'setUserInfo', payload: {...res.data} })
+      } else if (res.resultCode === 401) {
+        store.set('token', '')
+        store.set('guid', '')
+        yield put({ type: 'setToken', payload: {token: ''}})
+        yield put({ type: 'setUserId', payload: {id: ''}})
+        yield put({ type: 'setUserInfo', payload: {}})
+        loginExpired && loginExpired()
+      } else {
+        store.set('token', '')
+        store.set('guid', '')
+        yield put({ type: 'setToken', payload: {token: ''}})
+        yield put({ type: 'setUserId', payload: {id: ''}})
+        yield put({ type: 'setUserInfo', payload: {}})
+        fail && fail()
+      }
     }
   },
   reducers: {
@@ -39,7 +64,7 @@ export default {
       return { ...state, token: payload.token}
     },
     setUserId(state, { payload }){
-      return { ...state, username: payload.id}
+      return { ...state, userId: payload.id}
     },
     setUserInfo(state, { payload }){
       return { ...state, userInfo: payload}

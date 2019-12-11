@@ -30,9 +30,10 @@ const Center: React.FC<centerProps> = (props: centerProps) => {
 
   const loginOut = () => {
     dispatch({
-      type: 'account/loginOut',
+      type: 'account/loginOutAction',
       payload: {}
     })
+    window.location.href = '/'
   }
   return (
     <div className={styles["usercenter"]}>
@@ -56,15 +57,15 @@ const Center: React.FC<centerProps> = (props: centerProps) => {
       <div className={styles["usercenter-content"]}>
         <div className={styles["usercenter-content-menu"]}>
           <div onClick={() => { goToPath('history') }}>
-            <img src="@/assets/images/mI1.png" />
+            <img src={require("@/assets/images/mI1.png")} />
             <div>测试记录</div>
           </div>
           <div onClick={() => { goToPath('collect') }}>
-            <img src="@/assets/images/mI2.png" />
+            <img src={require("@/assets/images/mI2.png")} />
             <div>收藏记录</div>
           </div>
           <div onClick={() => { goToPath('integration') }}>
-            <img src="@/assets/images/mI3.png" />
+            <img src={require("@/assets/images/mI3.png")} />
             <div>积分</div>
           </div>
         </div>
