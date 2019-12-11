@@ -3,7 +3,7 @@ export default [
     path: '/member',
     component: '../layouts/LoginLayout',
     routes: [
-      { path: '/member/login', component: './login/index', title: 'login'}
+      { path: '/member/login', component: './member/login/index', title: 'login'}
     ]
   },
   {

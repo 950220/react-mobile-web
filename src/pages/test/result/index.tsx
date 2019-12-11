@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './index.less'
 
-const Collect: React.FC = props => {
+const Result: React.FC = props => {
   return (
     <div></div>
   )
 }
 
-export default Collect;
+export default Result;
