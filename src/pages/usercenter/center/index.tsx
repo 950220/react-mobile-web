@@ -4,6 +4,8 @@ import { connect } from 'dva';
 import { NavBar, Icon, Button } from 'antd-mobile';
 import styles from './index.less';
 
+const { UserInfoLoaderOw } = require('@/components/ContentLoader')
+
 interface centerProps {
   userInfo: any,
   dispatch: any

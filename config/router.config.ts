@@ -14,6 +14,7 @@ export default [
       { path: '/home', component: './home/index', title: 'home' },
       { path: '/test/main', component: './test/main/index', title: 'main' },
       { path: '/test/question', component: './test/question/index', title: 'question' },
+      { path: '/test/result', component: './test/result/index', title: 'result' },
       { path: '/joke', component: './joke/index', title: 'joke' },
       { path: '/usercenter', component: './usercenter/center/index', title: 'question' },
       { path: '/usercenter/userInfo', component: './usercenter/userinfo/index', title: 'userinfo'}
