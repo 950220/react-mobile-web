@@ -54,6 +54,10 @@ const Login: React.FC<LoginProps> = (props: LoginProps) => {
       }
     })
   }
+
+  const goRegister = () => {
+    router.push('/member/register')
+  }
   return (
     <div className={styles["login-content"]}>
       <div className={styles["login-top"]}>
@@ -74,7 +78,7 @@ const Login: React.FC<LoginProps> = (props: LoginProps) => {
           <Button type="primary" size="small" className="btn-common" onClick={login} loading={loading}>{loading ? '登录中...' : '登录'}</Button>
         </div>
         <div className={styles["forgetpaw"]}>
-          <div>去注册</div>
+          <div onClick={goRegister}>去注册</div>
           <div>忘记密码</div>
         </div>
         <div className={styles["lg-third"]}>
