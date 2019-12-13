@@ -50,7 +50,12 @@ const Question: React.FC<QuestionProps> = (props: QuestionProps) => {
       .then((res: any) => {
         setShowModal(false)
         if (res.resultCode === 200) {
-
+          router.replace({
+            pathname: '/test/result',
+            query: {
+              resultId: ''
+            }
+          })
         } else {
           Toast.info('测试失败,请重试！！！', 3)
         }

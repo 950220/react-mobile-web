@@ -35,7 +35,7 @@ const Center: React.FC<centerProps> = (props: centerProps) => {
       type: 'account/loginOutAction',
       payload: {}
     })
-    window.location.href = '/'
+    window.location.href = '/m/'
   }
   return (
     <div className={styles["usercenter"]}>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'dva';
 import { NavBar, Icon, Tag } from 'antd-mobile';
 import styles from './index.less';
+import router from 'umi/router';
 
 interface ResultProps {
   userInfo: any
@@ -19,7 +20,7 @@ const Result: React.FC<ResultProps> = (props: ResultProps) => {
   const [tagList, setTagList] = useState([])
 
   const leftClick = () => {
-    console.log(111)
+    router.goBack()
   }
 
   return (

@@ -55,15 +55,17 @@ const Register: React.FC = props => {
     }
     registerUser(params).then((res: any) => {
       if (res.resultCode === 200) {
-        let warning = alert('提示', '注册成功', [
-          { text: '返回登录', onPress: () => {warning.close();router.goBack}},
+        alert('提示', '注册成功', [
+          { text: '返回登录', onPress: () => {router.goBack}},
         ]);
       } else {
         Toast.info(res.errorDescription || '注册失败', 3)
+        setCaptchaUrl(`http://39.108.232.210:9165/member/captcha?${new Date().getTime()}`)
       }
     })
     .catch((err: any) => {
       Toast.info('注册失败!!请重试', 3)
+      setCaptchaUrl(`http://39.108.232.210:9165/member/captcha?${new Date().getTime()}`)
     })
   }
   return (
