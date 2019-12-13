@@ -17,6 +17,10 @@ interface keyValueData {
 const UserInfo: React.FC<UserInfoProps>= props => {
 
   const { dispatch, userInfo } = props
+
+  const changePass = () => {
+    router.push('/usercenter/changePassword')
+  }
   return (
     <div className={styles["userinfo"]}>
       <NavBar
@@ -31,7 +35,7 @@ const UserInfo: React.FC<UserInfoProps>= props => {
           <div className={styles["userinfo-content-avatar-right"]}>
             <div className={styles["userinfo-content-avatar-right-upload"]}>
               <div className={styles["userinfo-content-avatar-right-box"]}>
-                <img src="" alt="" />
+                <img src={userInfo.avatar ? userInfo.avatar : require('@/assets/images/logo.jpg')} alt="" />
               </div>
             </div>
           </div>
@@ -100,6 +104,12 @@ const UserInfo: React.FC<UserInfoProps>= props => {
               :
               <span>绑定</span>
             }
+          </div>
+        </div>
+        <div className={styles["userinfo-content-pass"]}>
+          <span>密码</span>
+          <div className={styles["userinfo-content-pass-right"]}>
+            <span onClick={changePass}>修改</span>
           </div>
         </div>
       </div>

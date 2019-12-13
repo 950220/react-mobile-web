@@ -18,7 +18,8 @@ export default [
       { path: '/test/result', component: './test/result/index', title: 'result' },
       { path: '/joke', component: './joke/index', title: 'joke' },
       { path: '/usercenter', component: './usercenter/center/index', title: 'question' },
-      { path: '/usercenter/userInfo', component: './usercenter/userinfo/index', title: 'userinfo'}
+      { path: '/usercenter/userInfo', component: './usercenter/userinfo/index', title: 'userinfo'},
+      { path: '/usercenter/changePassword', component: './usercenter/resetPassword/index', title: 'changePass'}
     ]
   }
 ];

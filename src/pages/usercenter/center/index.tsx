@@ -47,10 +47,10 @@ const Center: React.FC<centerProps> = (props: centerProps) => {
 			>个人中心</NavBar>
       <div className={styles["usercenter-top"]}>
         <div className={styles["usercenter-top-info"]}>
-          <img src="" />
+          <img src={userInfo.avatar ? userInfo.avatar : require('@/assets/images/logo.jpg')} />
           <div className={styles["usercenter-top-info-text"]} onClick={() => { goToPath('userInfo') }}>
-            <div>{userInfo.nickname}</div>
-            <div>{userInfo.intro}</div>
+            <div>{userInfo.nickname ? userInfo.nickname : '游客33589'}</div>
+            <div>{userInfo.intro ? userInfo.intro : '这个人很懒，什么都没留下...'}</div>
           </div>
           <div className={styles["usercenter-top-info-right"]}>
           </div>
