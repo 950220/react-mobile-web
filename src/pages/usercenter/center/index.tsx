@@ -23,7 +23,7 @@ const Center: React.FC<centerProps> = (props: centerProps) => {
   const goToPath = (type: string) => {
     const routerPath: IRouterPath = {
       userInfo: '/usercenter/userInfo',
-      history: '/usercenter/hsitory',
+      history: '/usercenter/history',
       collect: '/usercenter/collect',
       integration: '/usercenter/integration'
     }

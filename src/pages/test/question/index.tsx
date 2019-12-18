@@ -53,7 +53,7 @@ const Question: React.FC<QuestionProps> = (props: QuestionProps) => {
           router.replace({
             pathname: '/test/result',
             query: {
-              resultId: ''
+              testId: res.data.testId
             }
           })
         } else {

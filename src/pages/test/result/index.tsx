@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'dva';
 import { NavBar, Icon, Tag } from 'antd-mobile';
 import styles from './index.less';
 import router from 'umi/router';
+import { getResultById } from './service.js'
 
 interface ResultProps {
-  userInfo: any
+  userInfo: any,
+  location: any
 }
 
 interface keyValueData {
@@ -14,14 +16,30 @@ interface keyValueData {
 
 const Result: React.FC<ResultProps> = (props: ResultProps) => {
 
-  const { userInfo } = props
+  const { userInfo, location } = props
 
   const [resultList, setResultList] = useState([])
   const [tagList, setTagList] = useState([])
+  const [isShowOther, setIsShowOther] = useState(false)
 
   const leftClick = () => {
     router.goBack()
   }
+
+  useEffect(() => {
+    let params = {
+      testId: location.query.testId
+    }
+    getResultById(params).then((res: any) => {
+      if (res.resultCode === 200) {
+        setResultList(res.data.resultList)
+        setTagList(res.data.tagList)
+      }
+    })
+    .catch((err: any) => {
+      console.log(err)
+    })
+  }, [])
 
   return (
     <div className={styles["result-content"]}>
@@ -45,7 +63,7 @@ const Result: React.FC<ResultProps> = (props: ResultProps) => {
               {
                 tagList.map((item: any) => {
                   return (
-                    <Tag key={item.tagName}>{item.tagName}</Tag>
+                    <div key={item.labelId} className={styles["tag-item"]}>{item.label}</div>
                   )
                 })
               }
@@ -111,16 +129,30 @@ const Result: React.FC<ResultProps> = (props: ResultProps) => {
         </div>
         <div className={styles["content-layout-word"]}>
           {
-            resultList.map((item: any, index: number) => {
-              return (
-                <div className={styles["content-layout-word-other-item"]}>
-                  <div></div>
-                  <div><span>{index + 1}.</span>{item.resultText}</div>
-                  <div style={{"clear": "both"}}></div>
-                </div>
-              )
-            })
+            resultList&&resultList.length > 1 && !isShowOther ?
+            <>
+              <div className={styles["content-layout-word-other-item"]}>
+                <div></div>
+                <div><span></span>{resultList[0].content}</div>
+                <div style={{"clear": "both"}}></div>
+              </div>
+            </>
+            :
+            <>
+            {
+              resultList.map((item: any, index: number) => {
+                return (
+                  <div className={styles["content-layout-word-other-item"]} key={item.introId}>
+                    <div></div>
+                    <div><span>{index + 1}.</span>{item.content}</div>
+                    <div style={{"clear": "both"}}></div>
+                  </div>
+                )
+              })
+            }
+            </>
           }
+          <div className={styles["content-layout-word-more"]} onClick={() => {setIsShowOther(!isShowOther)}}>{isShowOther ? '收起' : '查看更多'}</div>
         </div>
       </div>
     </div>

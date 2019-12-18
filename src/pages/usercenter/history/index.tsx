@@ -1,10 +1,81 @@
-import React from 'react';
-import styles from './index.less'
+import React, { useEffect } from 'react';
+import { connect } from 'dva';
+import router from 'umi/router'
+import { NavBar } from 'antd-mobile';
+import Icon from '@/components/Icon'
+import styles from './index.less';
 
-const History: React.FC = props => {
+interface keyValueData {
+  [key: string]: any
+}
+
+interface HistoryProps {
+  loading: any,
+  history: any,
+  dispatch: any,
+  userId: string
+}
+
+const History: React.FC<HistoryProps> = (props: HistoryProps) => {
+
+  const { history, dispatch, userId } = props
+
+  const titleTexT: keyValueData = {
+    privity: '默契大作战',
+    charm: '魅力值测试',
+    safe: '安全感测试',
+    anxiety: '焦虑测试'
+  }
+
+  useEffect(() => {
+    dispatch({
+      type: 'usercenter/getTestHistoryAction',
+      payload: {
+        params: {
+          userId
+        }
+      }
+    })
+  }, [])
+
+  const goToDetail = (id: number) => {
+    router.push({
+      pathname: '/test/result',
+      query: {
+        testId: id
+      }
+    })
+  }
   return (
-    <div></div>
+    <div className={styles["history-wrapper"]}>
+      <NavBar
+				mode="dark"
+				icon={<Icon type="zuo-1" className={styles["left-icon"]}/>}
+				onLeftClick={router.goBack}
+				rightContent={[]}
+			>测试记录</NavBar>
+      <div className={styles["page-loadmore-wrapper"]}>
+        {
+          history.map((item: any, index: number) => {
+            return (
+              <div key={item.id} className={styles["history-item"]} onClick={() => {goToDetail(item.id)}}>
+                <div className={styles["history-item-title"]}><span>{titleTexT[item.testType]}</span></div>
+                <div className={styles["history-flex-row"]}>
+                  <span className={styles["flex-1"]}>{item.testTime}</span>
+                  <span className={styles["score-text"]}>{item.score}</span>
+                  <Icon type="you-1" className={styles["right-icon"]}/>
+                </div>
+              </div>
+            )
+          })
+        }
+      </div>
+    </div>
   )
 }
 
-export default History;
+export default connect(({loading, usercenter, account}: keyValueData) => ({
+  loading,
+  history: usercenter.history,
+  userId: account.userId
+}))(History);

@@ -12,7 +12,7 @@ export async function getQuestionData(params) {
 // 提交测试答案
 export async function submitQuestionResult(params) {
   return request({
-    url: '/member/login',
+    url: '/test/submitTest',
     method: "POST",
     data: params
   });

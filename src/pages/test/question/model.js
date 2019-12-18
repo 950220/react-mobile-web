@@ -23,10 +23,11 @@ export default {
     },
     *submitTestQuestionAction({ payload }, { call, put, select }) {
       let params = {
-        results: yield select(state => state.results),
+        results: yield select(state => state.question.results),
         userId: store.get('userId'),
-        type: store.get('testType')
+        testType: store.get('testType')
       }
+      console.log(params)
       const res = yield call(submitQuestionResult, { ...params });
       return yield res;
     }
