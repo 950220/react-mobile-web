@@ -39,6 +39,10 @@ const UserInfo: React.FC<UserInfoProps>= props => {
   const uploadError = () => {
     
   }
+
+  const changeSex = () => {
+    
+  }
   return (
     <div className={styles["userinfo"]}>
       <NavBar
@@ -72,7 +76,7 @@ const UserInfo: React.FC<UserInfoProps>= props => {
         </div>
         <div className={styles["userinfo-content-sex"]}>
           <span>性别</span>
-          <div className={styles["userinfo-content-sex-right"]}>
+          <div className={styles["userinfo-content-sex-right"]} conClick={changeSex}>
             {
               userInfo.sex ? 
               <span>{userInfo.sex}</span>

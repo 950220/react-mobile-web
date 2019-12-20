@@ -53,8 +53,8 @@ const Center: React.FC<centerProps> = (props: centerProps) => {
             <div>{userInfo.nickname ? userInfo.nickname : '游客33589'}</div>
             <div>{userInfo.intro ? userInfo.intro : '这个人很懒，什么都没留下...'}</div>
           </div>
-          <div className={styles["usercenter-top-info-right"]}>
-            <Icon type="right"/>
+          <div className={styles["usercenter-top-info-right"]} onClick={() => { goToPath('userInfo') }}>
+            <Icon type="right" className={styles["right-icon"]}/>
           </div>
         </div>
       </div>
