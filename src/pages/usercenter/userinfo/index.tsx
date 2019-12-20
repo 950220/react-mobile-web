@@ -3,6 +3,9 @@ import { connect } from 'dva';
 import router from 'umi/router'
 import { NavBar, Icon } from 'antd-mobile';
 import styles from './index.less'
+import Upload from '@/components/Upload'
+import { baseUrl } from '@/config'
+import Image from '@/components/Image'
 
 interface UserInfoProps {
   userInfo: any,
@@ -21,6 +24,21 @@ const UserInfo: React.FC<UserInfoProps>= props => {
   const changePass = () => {
     router.push('/usercenter/changePassword')
   }
+
+  const uploadBefore = () => {
+
+  }
+  const uploadSuccess = (data: any) => {
+    dispatch({
+      type: 'account/setAvatar',
+      payload: {
+        avatar: data.data.name || ''
+      }
+    })
+  }
+  const uploadError = () => {
+    
+  }
   return (
     <div className={styles["userinfo"]}>
       <NavBar
@@ -35,7 +53,8 @@ const UserInfo: React.FC<UserInfoProps>= props => {
           <div className={styles["userinfo-content-avatar-right"]}>
             <div className={styles["userinfo-content-avatar-right-upload"]}>
               <div className={styles["userinfo-content-avatar-right-box"]}>
-                <img src={userInfo.avatar ? userInfo.avatar : require('@/assets/images/logo.jpg')} alt="" />
+                <Image src={userInfo.avatar ? `/avatar/${userInfo.avatar}` : require('@/assets/images/logo.jpg')} />
+                <Upload url={`${baseUrl}/member/upload?userId=${userInfo.userId}`} before={uploadBefore} success={(data) => {uploadSuccess(data)}} error={uploadError}/>
               </div>
             </div>
           </div>

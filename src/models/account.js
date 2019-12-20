@@ -68,6 +68,10 @@ export default {
     },
     setUserInfo(state, { payload }){
       return { ...state, userInfo: payload}
+    },
+    setAvatar(state, { payload }){
+      state.userInfo.avatar = payload.avatar
+      return { ...state }
     }
   }
 };

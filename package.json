@@ -39,7 +39,8 @@
     "umi": "^2.9.0",
     "umi-plugin-react": "^1.8.0",
     "umi-types": "^0.3.0",
-    "react-iframe": "^1.8.0"
+    "react-iframe": "^1.8.0",
+    "moment": "^2.24.0"
   },
   "engines": {
     "node": ">=8.0.0"

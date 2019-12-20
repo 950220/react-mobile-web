@@ -4,6 +4,7 @@ import { NavBar, Icon, Tag } from 'antd-mobile';
 import styles from './index.less';
 import router from 'umi/router';
 import { getResultById } from './service.js'
+import Image from '@/components/Image'
 
 interface ResultProps {
   userInfo: any,
@@ -52,7 +53,7 @@ const Result: React.FC<ResultProps> = (props: ResultProps) => {
       <div className={styles["top"]}></div>
       <div className={styles["content"]}>
         <div className={styles["content-header"]}>
-          <img src="" />
+          <Image src={userInfo.avatar ? `/avatar/${userInfo.avatar}` : require('@/assets/images/logo.jpg')} />
           <div className={styles["content-header-right"]}>
             <div className={styles["content-header-right-top"]}>
               <div></div>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'dva';
 import router from 'umi/router'
 import { NavBar } from 'antd-mobile';
+import moment from 'moment';
 import Icon from '@/components/Icon'
 import styles from './index.less';
 
@@ -58,13 +59,15 @@ const History: React.FC<HistoryProps> = (props: HistoryProps) => {
         {
           history.map((item: any, index: number) => {
             return (
-              <div key={item.id} className={styles["history-item"]} onClick={() => {goToDetail(item.id)}}>
-                <div className={styles["history-item-title"]}><span>{titleTexT[item.testType]}</span></div>
-                <div className={styles["history-flex-row"]}>
-                  <span className={styles["flex-1"]}>{item.testTime}</span>
-                  <span className={styles["score-text"]}>{item.score}</span>
-                  <Icon type="you-1" className={styles["right-icon"]}/>
+              <div key={item.id} className={styles["history-content"]} onClick={() => {goToDetail(item.id)}}>
+                <div className={styles["history-item"]}>
+                  <div className={styles["history-item-title"]}><span>{titleTexT[item.testType]}</span></div>
+                  <div className={styles["history-flex-row"]}>
+                    <span className={styles["flex-1"]}>{moment(item.testTime).format('YYYY-MM-DD HH:mm')}</span>
+                    <span className={styles["score-text"]}>{item.score}</span>
+                  </div>
                 </div>
+                <Icon type="you-1" className={styles["right-icon"]}/>
               </div>
             )
           })
