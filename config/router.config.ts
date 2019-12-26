@@ -20,7 +20,9 @@ export default [
       { path: '/usercenter', component: './usercenter/center/index', title: 'question' },
       { path: '/usercenter/userInfo', component: './usercenter/userinfo/index', title: 'userinfo'},
       { path: '/usercenter/changePassword', component: './usercenter/resetPassword/index', title: 'changePass'},
-      { path: '/usercenter/history', component: './usercenter/history/index', title: 'history' }
+      { path: '/usercenter/history', component: './usercenter/history/index', title: 'history' },
+      { path: '/usercenter/contactUs', component: './usercenter/contactUs/index', title: 'contactUs' },
+      { path: '/about', component: './about/index', title: 'about' }
     ]
   }
 ];

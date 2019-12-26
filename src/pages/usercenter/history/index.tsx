@@ -51,7 +51,7 @@ const History: React.FC<HistoryProps> = (props: HistoryProps) => {
     <div className={styles["history-wrapper"]}>
       <NavBar
 				mode="dark"
-				icon={<Icon type="zuo-1" className={styles["left-icon"]}/>}
+				icon={<Icon type="zuo-1" className="left-light-icon"/>}
 				onLeftClick={router.goBack}
 				rightContent={[]}
 			>测试记录</NavBar>

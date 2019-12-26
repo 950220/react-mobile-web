@@ -72,7 +72,7 @@ const Register: React.FC = props => {
     <div className={styles["register-content"]}>
       <NavBar
 				mode="light"
-				icon={<Icon type="zuo-1" className='left-icon'/>}
+				icon={<Icon type="zuo-1" className='left-dark-icon'/>}
 				onLeftClick={router.goBack}
 				rightContent={[]}
       >

@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'dva';
 import router from 'umi/router'
-import { NavBar, Icon } from 'antd-mobile';
+import { NavBar } from 'antd-mobile';
+import Icon from '@/components/Icon'
 import styles from './index.less'
 import Upload from '@/components/Upload'
 import { baseUrl } from '@/config'
@@ -43,11 +44,17 @@ const UserInfo: React.FC<UserInfoProps>= props => {
   const changeSex = () => {
     
   }
+
+  const goToAbout = () => {
+    router.push({
+      pathname: '/about'
+    })
+  }
   return (
     <div className={styles["userinfo"]}>
       <NavBar
         mode="dark"
-        icon={<Icon type="left" />}
+        icon={<Icon type="zuo-1" className='left-light-icon'/>}
         onLeftClick={router.goBack}
         rightContent={[]}
       >个人资料</NavBar>
@@ -76,7 +83,7 @@ const UserInfo: React.FC<UserInfoProps>= props => {
         </div>
         <div className={styles["userinfo-content-sex"]}>
           <span>性别</span>
-          <div className={styles["userinfo-content-sex-right"]} conClick={changeSex}>
+          <div className={styles["userinfo-content-sex-right"]} onClick={changeSex}>
             {
               userInfo.sex ? 
               <span>{userInfo.sex}</span>
@@ -134,6 +141,10 @@ const UserInfo: React.FC<UserInfoProps>= props => {
           <div className={styles["userinfo-content-pass-right"]}>
             <span onClick={changePass}>修改</span>
           </div>
+        </div>
+        <div className={styles["userinfo-content-about"]} onClick={goToAbout}>
+          <span>关于我们</span>
+          <Icon type="you-1" className={styles["right-icon"]}/>
         </div>
       </div>
     </div>

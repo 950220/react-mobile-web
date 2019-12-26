@@ -1,7 +1,8 @@
 import React from 'react';
 import router from 'umi/router'
 import { connect } from 'dva';
-import { NavBar, Icon, Button } from 'antd-mobile';
+import { NavBar, Button } from 'antd-mobile';
+import Icon from '@/components/Icon'
 import styles from './index.less';
 import Image from '@/components/Image'
 
@@ -26,7 +27,8 @@ const Center: React.FC<centerProps> = (props: centerProps) => {
       userInfo: '/usercenter/userInfo',
       history: '/usercenter/history',
       collect: '/usercenter/collect',
-      integration: '/usercenter/integration'
+      integration: '/usercenter/integration',
+      contactUs: '/usercenter/contactUs'
     }
     router.push(routerPath[type])
   }
@@ -42,9 +44,16 @@ const Center: React.FC<centerProps> = (props: centerProps) => {
     <div className={styles["usercenter"]}>
       <NavBar
 				mode="dark"
-				icon={<Icon type="left" />}
+				icon={<Icon type="zuo-1" className="left-light-icon"/>}
 				onLeftClick={router.goBack}
-				rightContent={[]}
+				rightContent={[
+          <Icon
+            key="1"
+            type="icon_overseas_navbar_OnlineService"
+            className={styles["right-header-icon"]}
+            onClick={() => {goToPath('contactUs')}}
+          />
+        ]}
 			>个人中心</NavBar>
       <div className={styles["usercenter-top"]}>
         <div className={styles["usercenter-top-info"]}>
@@ -54,7 +63,7 @@ const Center: React.FC<centerProps> = (props: centerProps) => {
             <div>{userInfo.intro ? userInfo.intro : '这个人很懒，什么都没留下...'}</div>
           </div>
           <div className={styles["usercenter-top-info-right"]} onClick={() => { goToPath('userInfo') }}>
-            <Icon type="right" className={styles["right-icon"]}/>
+            <Icon type="you-1" className={styles["right-icon"]}/>
           </div>
         </div>
       </div>
